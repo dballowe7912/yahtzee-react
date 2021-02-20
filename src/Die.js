@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import "./Die.css";
 
 class Die extends Component {
+  static defaultProps = {
+    numberWords: ["one", "two", "three", "four", "five", "six"]
+  }
   constructor(props){
     super(props);
 
@@ -13,14 +16,15 @@ class Die extends Component {
   }
 
   render() {
+    let classes = `Die fas fa-dice-${this.props.numberWords[this.props.val - 1]} fa-5x `;
+    if(this.props.locked) classes += 'Die-locked';
     return (
-      <button
-        className={"Die"}
+      <i
+        className={classes}
         style={{ backgroundColor: this.props.locked ? "grey" : "black" }}
         onClick={this.handleClick}
       >
-        {this.props.val}
-      </button>
+      </i>
     );
   }
 }
